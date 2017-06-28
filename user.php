@@ -15,9 +15,9 @@
 	<section class="mainContainer">
 		<form>
 			<h2>Add New Post</h2>
-			Email
+			<label>Email</label>
 			<input class="formField" type="email" name="email" placeholder="Email">
-			Your Message
+			<label>Your Message</label>
 			<textarea rows="10" cols="50" placeholder="Write what's on your mind"></textarea>
 			<div class="buttons">
 				<button value="Submit">Send</button>
