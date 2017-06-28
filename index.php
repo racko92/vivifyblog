@@ -1,11 +1,5 @@
 <?php include 'header.php'; ?>
 <?php 
-	function dump($x){
-		echo '<pre>';
-		var_dump($x);
-		echo '</pre>';
-	}
-	
     // pripremamo upit
     $sql = "SELECT * FROM post INNER JOIN users WHERE post.user_id = users.id ORDER BY created_at";
     $statement = $conn->prepare($sql);
