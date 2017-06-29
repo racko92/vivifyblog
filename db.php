@@ -6,23 +6,22 @@
 		echo '</pre>';
 	}
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "vivifyblog";
+    function getConnection(){
 
-	try {
-		    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		    // set the PDO error mode to exception
-		    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	    }
-	catch(PDOException $e)
-	    {
-	    	echo $e->getMessage();
-	    }
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "vivifyblog";
 
-	    $statement = $conn->prepare('SELECT * FROM post');
-	    $statement->execute();
-	    $statement->setFetchMode(PDO::FETCH_ASSOC);
-	    dump($statement->fetchAll());
+		try {
+			    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+			    // set the PDO error mode to exception
+			    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			    return $conn;
+		    }
+		catch(PDOException $e)
+		    {
+		    	echo $e->getMessage();
+		    }
+    }
 ?>

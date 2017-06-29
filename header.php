@@ -1,4 +1,7 @@
-<?php include 'databaseConnect.php';?>
+<?php 
+	include 'db.php';
+	include 'blogic.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>

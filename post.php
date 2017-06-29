@@ -1,26 +1,25 @@
 <?php include 'header.php'; ?>
 <main>
 	<section class="mainContainer">
-		<h1>Post Title</h1>
-		<h3>Category</h3>
-		<h4 class="postedBy">1.1.2000 by John Doe</h4>
-		<p class="postContent">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</p>
+		<?php
+				$post = fetchFromTableById('post', $_GET['id']);
+				$user = fetchFromTableById('users', $post['user_id']);
+				$category = fetchFromTableById('category', $post['category_id']);
+				echo "<h1>" . $post['title'] . "</h1>";
+				echo "<h3>Category: " . $category['name'] . "</h3>";
+				echo "<h4 class=\"postedBy\">Posted on: " . $post['created_at'] . " by " . $user['name'] . "</h4>";
+				echo "<p class=\"postContent\">" . $post['text'] . "</p>";
+		 ?>
 	</section>
 	<section class="comment">
-	<h4 class="comentedBy">1.1.2000 by John Doe</h4>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<h2>Comments: </h2>
+	<?php
+			$userCommented = fetchUserWhoPosted($post);
+			$comments = fetchCommentsOnPost($post);
+			dump($comments);
+		// echo '<h4 class="comentedBy">' . $comments['created_at'] .  ' by ' . $userCommented['name'] . '</h4>';
+		// echo '<p>' . $comment['text'] . '</p>';
+	?>
 	</section>
 	<section class="postComment">
 		<textarea class="commentArea" placeholder="Write your comment"></textarea>
