@@ -3,7 +3,6 @@
 	<?php 
 
 		$userPosts = fetchRowsRelatedToRow('post', 'user_id', $_GET['id']);
-		dump($userPosts);
 
 	?>
 	<section class="mainContainer">
@@ -33,6 +32,11 @@
 				<button value="Submit">Send</button>
 			</div>
 		</form>
+		<?php 
+
+			
+
+		?>
 	</section>
 </main>
 <?php include 'footer.php'; ?>

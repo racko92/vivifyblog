@@ -1,13 +1,21 @@
-<?php include 'header.php'; ?>
 <?php 
-
+	include 'header.php'; 
+	
 ?>
 <main>
 	<?php
+			if(array_key_exists('logout', $_GET)){
+				if($_GET['logout'] == true){
+					session_destroy();
+				$_SESSION = [];
+				header('Location: index.php');
+				
+				// header('Location: index.php');
+				}
+			}
+		$posts = fetchAllPosts();
 
-		$post = fetchFromTableById('post');
-
-		foreach($post as $value){
+		foreach($posts as $value){
 			$user = fetchUserWhoPosted($value);
 			echo '<section class="mainContainer">';
 			echo '<a href="post.php?id=' . $value['id'] . '"><h2>' . $value['title'] . '</h2></a>';
@@ -15,6 +23,7 @@
 			echo "<p class=\"postContent\">" . $value['text'] . "</p>";
 			echo "</section>";
 		}
+
 	?>
 	<section class="postLinks">
 		<a href="#">Older</a>

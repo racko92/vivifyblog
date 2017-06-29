@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?>
+<?php 
+	include 'session.php';
+	include 'header.php'; 
+?>
 <main>
 	<section class="mainContainer">
 		<?php

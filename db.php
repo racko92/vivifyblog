@@ -23,5 +23,24 @@
 		    {
 		    	echo $e->getMessage();
 		    }
+    }    
+
+
+    function fetchFromTableById($table, $id){
+	    $statement = getPreparedStatement('SELECT * FROM ' .  $table . ' WHERE id =' . $id);
+	    $result = fetchSingleQueryResult($statement);
+	    return $result;
     }
+
+    function fetchRowsRelatedToRow($table, $row, $id){
+        $statement = getPreparedStatement('SELECT * FROM ' . $table . ' WHERE ' . $row . ' = ' . $id);
+        $result = fetchAllQueryResult($statement);
+        return $result;
+    }
+    function fetchRelatedRow($table, $id){
+        $statement = getPreparedStatement('SELECT * FROM ' . $table . ' WHERE ' . 'id = ' . $id);
+        $result = fetchSingleQueryResult($statement);
+        return $result;
+    }
+
 ?>

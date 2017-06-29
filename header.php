@@ -1,4 +1,5 @@
-<?php 
+<?php
+	session_start(); 
 	include 'db.php';
 	include 'blogic.php';
 ?>
@@ -16,7 +17,20 @@
 		<a href="index.php">HOME</a>
 		<a href="about.php">ABOUT</a>
 		<a href="contact.php">CONTACT</a>
-		<a href="signin.php">SIGN IN</a>
+		<?php 
+
+			
+			if(array_key_exists('logged', $_SESSION)){
+				if($_SESSION['logged'] == true){
+					echo '<a href="index.php?logout=true">SIGN OUT</a>';
+				}
+			}
+			else{
+
+				echo '<a href="signin.php">SIGN IN</a>';
+			}
+		
+		?>
 	
 	</nav>
 </header>

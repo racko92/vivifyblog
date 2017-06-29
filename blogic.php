@@ -14,21 +14,19 @@
         $result = $statement->fetch();
 	    return $result;
     }
-    function fetchFromTableById($table, $id){
-	    $statement = getPreparedStatement('SELECT * FROM ' .  $table . ' WHERE id =' . $id);
-	    $result = fetchSingleQueryResult($statement);
-	    return $result;
-    }
 
     function fetchUserWhoPosted($post){
-	    $result = fetchFromTableById('users', $post['user_id']);
+	    $result = fetchRelatedRow('users', $post['user_id']);
 	    return $result;
     }
 
-    function fetchRowsRelatedToRow($table, $row, $id){
-        $statement = getPreparedStatement('SELECT * FROM ' . $table . ' WHERE ' . $row . ' = ' . $id);
+    function fetchAllFromTable($table){
+        $statement = getPreparedStatement('SELECT * FROM ' . $table . ';');
         $result = fetchAllQueryResult($statement);
         return $result;
     }
-
+    function fetchAllPosts(){
+        $statement = fetchAllFromTable('post');
+        return $statement;
+    }
  ?>
