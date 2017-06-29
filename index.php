@@ -5,7 +5,7 @@
 <main>
 	<?php
 
-		$post = fetchFromTable('post');
+		$post = fetchFromTableById('post');
 
 		foreach($post as $value){
 			$user = fetchUserWhoPosted($value);

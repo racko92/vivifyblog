@@ -1,15 +1,25 @@
 <?php include 'header.php'; ?>
 <main>
+	<?php 
+
+		$userPosts = fetchRowsRelatedToRow('post', 'user_id', $_GET['id']);
+		dump($userPosts);
+
+	?>
 	<section class="mainContainer">
 		<table class="table">
 			<tr class="tableFirstRow">
 				<th class="firstTh">Name</th>
 				<th>Options</th>
 			</tr>
-			<tr>
-				<td>Value1</td>
-				<td>Option1</td>
-			</tr>
+			<?php 
+			foreach($userPosts as $value){
+				echo "<tr>";
+					echo "<td>" . $value['title'] . "</td>";
+					echo "<td class=\"tdOptions\">". $value['text'] . "</td>";
+				echo "</tr>";
+			}
+			?>
 		</table>
 	</section>
 	<section class="mainContainer">

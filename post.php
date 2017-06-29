@@ -14,11 +14,13 @@
 	<section class="comment">
 	<h2>Comments: </h2>
 	<?php
-			$userCommented = fetchUserWhoPosted($post);
-			$comments = fetchCommentsOnPost($post);
-			dump($comments);
-		// echo '<h4 class="comentedBy">' . $comments['created_at'] .  ' by ' . $userCommented['name'] . '</h4>';
-		// echo '<p>' . $comment['text'] . '</p>';
+			$userPosted = fetchUserWhoPosted($post);
+			$comments = fetchRowsRelatedToRow('comment', 'post_id', $post['id']);
+			foreach($comments as $value){
+				$userCommented = fetchFromTableById('users', $value['user_id']);
+				echo '<h4 class="comentedBy">' . $value['created_at'] .  ' by ' . $userCommented['name'] . '</h4>';
+				echo '<p>' . $value['text'] . '</p>';
+			}
 	?>
 	</section>
 	<section class="postComment">

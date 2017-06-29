@@ -7,10 +7,12 @@
 	    return $statement;
 	}
     function fetchAllQueryResult($statement){
-	    return($statement->fetchAll());
+        $result = $statement->fetchAll();
+        return $result;
     }
     function fetchSingleQueryResult($statement){
-	    return($statement->fetch());
+        $result = $statement->fetch();
+	    return $result;
     }
     function fetchFromTableById($table, $id){
 	    $statement = getPreparedStatement('SELECT * FROM ' .  $table . ' WHERE id =' . $id);
@@ -23,9 +25,10 @@
 	    return $result;
     }
 
-    function fetchCommentsOnPost($post){
-    	$statement = getPreparedStatement('SELECT * FROM comment WHERE post_id = ' . $post['id']);
-    	$result = fetchAllQueryResult($statement);
-	    return $result;
+    function fetchRowsRelatedToRow($table, $row, $id){
+        $statement = getPreparedStatement('SELECT * FROM ' . $table . ' WHERE ' . $row . ' = ' . $id);
+        $result = fetchAllQueryResult($statement);
+        return $result;
     }
+
  ?>
