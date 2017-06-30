@@ -10,7 +10,6 @@
 				$_SESSION = [];
 				header('Location: index.php');
 				
-				// header('Location: index.php');
 				}
 			}
 		$posts = fetchAllPosts();

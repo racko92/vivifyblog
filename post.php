@@ -26,12 +26,34 @@
 			}
 	?>
 	</section>
-	<section class="postComment">
-		<textarea class="commentArea" placeholder="Write your comment"></textarea>
+	<form class="postComment" method="post">
+		<textarea class="commentArea" placeholder="Write your comment" name="text"></textarea>
 			<div class="buttons">
-				<button value="Submit">Comment</button>
+				<button value="submit" name="submit">Comment</button>
 			</div>	
-	</section>
+	</form>
+
+	<?php 
+		if(array_key_exists('user', $_SESSION)){
+			if(!empty($_POST['submit'])){
+				if(!empty($_POST['text'])){
+					addComment($post['id'], $_POST['text'], $_SESSION['user'], date('Y-m-d'));
+					unset($_POST);
+					header('Location: post.php?id=' . $_GET['id']);
+				}
+				else{
+					echo "<h2>Fill comment field before submiting!</h2>";
+					unset($_POST);
+				}
+				unset($_POST);
+			}
+			unset($_POST);
+		}
+		else{
+			echo "<h2>You need to be Signed In in order to post comments</h2>";
+		}
+
+	?>
 </main>
 
 <?php include 'footer.php'; ?>

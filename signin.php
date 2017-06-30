@@ -22,6 +22,7 @@
 				if($_POST['email'] == $value['email'] && $_POST['password'] == $value['password']){
 					$_SESSION['logged'] = true;
 					header('Location: user.php?id=' . $value['id']);
+					$_SESSION['user'] = $value['id'];
 					die();
 				}
 				else if($_POST['email'] == $value['email'] && $_POST['password'] != $value['password']){
@@ -30,6 +31,13 @@
 				}
 			}
 			echo "Press 'Sign Up' button to register!";
+		}
+
+
+		if(array_key_exists('logged', $_SESSION)){
+			if($_SESSION['logged'] = true){	
+				header('Location: user.php?id=' . $_SESSION['user']);
+			}
 		}
 
 		?>

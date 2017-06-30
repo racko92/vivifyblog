@@ -188,3 +188,16 @@ textarea:focus{
 a{
 	text-decoration: none;
 }
+.deleteButton{
+	text-align: center;
+	padding: 0;
+}
+.deleteButton a{
+	display: inline-block;
+	width: 100%;
+	font-size: 25px;
+}
+.deleteButton a:hover{
+	color: white;
+	background-color: red;
+}
